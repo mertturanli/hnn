@@ -7,7 +7,7 @@ In order to execute the estimator on the dataset:
 
 $ roslaunch hnn bag.launch 
 
-The parameter vectors of the robots to be estimated are [0.9, 0.9], [1.0, 1.0] and [1.0, 1.0], respectively.
+The parameter vectors of the robots to be estimated are [0.9, 0.9], [1.0, 1.0] and [1.0, 1.0], respectively. The trajectories of the robots are created by using these coefficients.
 
 The topic /robotX/estErr gives the estimation error (X is the robot number). In the launch file, the convergence of the estimator can be adjusted by using hfAlpha and hfBeta parameters.
 
