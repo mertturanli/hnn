@@ -3,9 +3,11 @@ The repository for the source code and dataset for Hopfield Neural Network Testi
 
 The ROS package includes HNN estimator node and dataset from Gazebo with three robots (the source code of the parameter estimator of the main method given in the paper "Multi-Robot Workspace Allocation with Hopfield Networks and Imprecise Localization").
 
-In order to execute the estimator on the dataset:
+In order to execute the estimator on the dataset you can use the following command:
 
 $ roslaunch hnn bag.launch 
+
+The rosbag node starts paused; you can unpause it by hitting space button.
 
 The parameter vectors of the robots to be estimated are [0.9, 0.9], [1.0, 1.0] and [1.0, 1.0], respectively. The trajectories of the robots are created by using these coefficients.
 
