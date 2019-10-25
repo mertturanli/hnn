@@ -1,0 +1,34 @@
+<launch>
+
+	<node pkg="rosbag" type="play" name="rosbag1" output="log" args="--clock --pause $(find hnn)/bag/2019-10-25-19-37-08.bag" />
+
+	<group ns="robot1">
+		
+		<node name="hnnNode" pkg="hnn" type="hnn_node" respawn="false" output="log" args="0" >
+			<rosparam param="realVector">[0.9, 0.9]</rosparam>
+			
+			<param name="hfAlpha" value="600.0" />
+			<param name="hfBeta" value="1.0" />
+		</node>
+	</group>
+
+	<group ns="robot2">
+		
+		<node name="hnnNode" pkg="hnn" type="hnn_node" respawn="false" output="log" args="1" >
+			<rosparam param="realVector">[1.0, 1.0]</rosparam>
+			
+			<param name="hfAlpha" value="600.0" />
+			<param name="hfBeta" value="1.0" />
+		</node>
+	</group>
+
+	<group ns="robot3">
+		
+		<node name="hnnNode" pkg="hnn" type="hnn_node" respawn="false" output="log" args="2" >
+			<rosparam param="realVector">[1.0, 1.0]</rosparam>
+			
+			<param name="hfAlpha" value="600.0" />
+			<param name="hfBeta" value="1.0" />
+		</node>
+	</group>
+</launch>
