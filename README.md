@@ -1,4 +1,4 @@
-# Hopfield Neural Network (HNN)
+# Hopfield Neural Network (HNN) Estimator Repository
     The repository for the source code and dataset for Hopfield Neural Network Testing
 
 The ROS package includes HNN estimator node and dataset from Gazebo with three robots (the source code of the parameter estimator of the main method given in the paper "Multi-Robot Workspace Allocation with Hopfield Networks and Imprecise Localization").
