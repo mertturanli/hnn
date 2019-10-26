@@ -28,7 +28,7 @@
 
 ## Publishes
 ```
-* /robotX/estErr [[std_msgs/Float64]]: The estimation error for the robot X
+* /robotX/estErr [std_msgs/Float64]: The estimation error for the robot X
 ```
 
 ## Notes
