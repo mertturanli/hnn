@@ -23,7 +23,7 @@
 ```
 3. Run the estimator on the dataset:
 ```
-    $ roslaunch hnn bag.launch 
+   $ roslaunch hnn bag.launch 
 ```
 
 ## Publishes
