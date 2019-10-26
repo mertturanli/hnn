@@ -1,11 +1,19 @@
-# hnn
-The repository for the source code and dataset for Hopfield Neural Network Testing
+# Hopfield Neural Network (HNN)
+    The repository for the source code and dataset for Hopfield Neural Network Testing
 
 The ROS package includes HNN estimator node and dataset from Gazebo with three robots (the source code of the parameter estimator of the main method given in the paper "Multi-Robot Workspace Allocation with Hopfield Networks and Imprecise Localization").
 
-In order to execute the estimator on the dataset you can use the following command:
+## Installation
+1. Install ROS Melodic (http://wiki.ros.org/melodic/Installation/Ubuntu)
 
-$ roslaunch hnn bag.launch 
+2. Clone the repository 
+   cd ~/catkin_ws/src
+   git clone https://github.com/mertturanli/hnn
+   cd ~/catkin_ws
+   catkin_make
+
+3. Run the estimator on the dataset:
+    $ roslaunch hnn bag.launch 
 
 The rosbag node starts paused; you can unpause it by hitting space button.
 
@@ -15,5 +23,5 @@ The topic /robotX/estErr gives the estimation error (X is the robot number). In 
 
 The parameter estimation errors can be plotted using the following command:
 
-$ rqt_plot /robot1/estErr /robot2/estErr /robot3/estErr 
+    $ rqt_plot /robot1/estErr /robot2/estErr /robot3/estErr 
 
