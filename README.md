@@ -16,10 +16,10 @@
 
 2. Clone the repository 
 ```
-   cd ~/catkin_ws/src
-   git clone https://github.com/mertturanli/hnn
-   cd ~/catkin_ws
-   catkin_make
+   $ cd ~/catkin_ws/src
+   $ git clone https://github.com/mertturanli/hnn
+   $ cd ~/catkin_ws
+   $ catkin_make
 ```
 3. Run the estimator on the dataset:
 ```
