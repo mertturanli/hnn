@@ -1,6 +1,6 @@
 <launch>
 	
-	<node pkg="rosbag" type="play" name="rosbag1" output="log" args="--pause $(find hnn)/bag/2019-10-29-22-41-01.bag" />
+	<node pkg="rosbag" type="play" name="rosbag1" output="log" args="--pause $(find hnn)/bag/2019-10-30-00-01-06.bag" />
 
 	<group ns="robot1">
 		
@@ -31,4 +31,9 @@
 			<param name="hfBeta" value="1.0" />
 		</node>
 	</group>
+
+
+	<node pkg="rviz" type="rviz" name="rviz1" args="-d $(find hnn)/launch/robots.rviz" /> 
+
+	<node pkg="rqt_plot" type="rqt_plot" name="rqt_plot1" args="/robot1/estErr /robot2/estErr /robot3/estErr" /> 
 </launch>
