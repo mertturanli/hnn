@@ -8,8 +8,8 @@
     The source code of the parameter estimator is from the main method given in the paper "Multi-Robot Workspace Allocation with Hopfield Networks and Imprecise Localization".
 
 ## Requirements
-    Ubuntu 18.04
-    ROS melodic
+    Ubuntu 16.04 or later
+    ROS kinetic or later
 
 ## Installation
 1. Install ROS Melodic (http://wiki.ros.org/melodic/Installation/Ubuntu)
