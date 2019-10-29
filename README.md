@@ -29,6 +29,7 @@
 ## Publishes
 ```
 * /robotX/estErr [std_msgs/Float64]: The estimation error for the robot X
+* /robotX/estVector [hnn/EstimationVector]: The estimation vector of the robot X
 ```
 
 ## Notes
