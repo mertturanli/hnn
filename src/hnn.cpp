@@ -69,8 +69,8 @@ HNN::HNN(double hf_alpha, double hf_beta) {
 	// estimation vector
 	Ki[0] = 0;
 	Ki[1] = 0;
-	Ki_est[0] = 0;
-	Ki_est[1] = 0;
+	Ki_est[0] = 2.0;
+	Ki_est[1] = 2.0;
 
 	//
 	this->AA = MatrixXd::Zero(2, 2);
@@ -85,8 +85,8 @@ HNN::HNN(double hf_alpha, double hf_beta) {
 	this->dpitdt_1 = MatrixXd::Zero(2, 1);
 	this->pit = MatrixXd::Zero(2, 1);
 	this->pit_1 = MatrixXd::Zero(2, 1);
-	this->pit_1(0, 0) = 1e-4; // 1e-2
-	this->pit_1(1, 0) = 1e-4;
+	this->pit_1(0, 0) = 1e-4; // hf_beta * atanh(1.0 / hf_alpha / Ki_est[0]); // 1e-2
+	this->pit_1(1, 0) = 1e-4; // hf_beta * atanh(1.0 / hf_alpha / Ki_est[1]);
 	
 	this->si = MatrixXd::Zero(2, 1);
 	this->theta_est = MatrixXd::Zero(2, 1);
@@ -124,15 +124,18 @@ void HNN::set(const double* pose, const double* velocity, const double* xt) {
 		this->pose_1[0] = pose[0];
 		this->pose_1[1] = pose[1];
 		this->pose_1[2] = pose[2];
+		this->pose_2[0] = pose[0];
+		this->pose_2[1] = pose[1];
+		this->pose_2[2] = pose[2];
 
 		this->velocity_1[0] = velocity[0];
 		this->velocity_1[1] = velocity[1];
 		this->velocity_1[2] = velocity[2];
 
-		this->xt[0] = pose[0];
-		this->xt[1] = pose[1];
-		this->xt_1[0] = pose[0];
-		this->xt_1[1] = pose[1];
+		this->xt_1[0] = xt[0];
+		this->xt_1[1] = xt[1];
+		this->xt_2[0] = xt[0];
+		this->xt_2[1] = xt[1];
 	}
 }
 
@@ -188,6 +191,10 @@ void HNN::estimate() {
 		M_velocities(1, 0) = dx[2] * l;
 
 		M_dx = A * M_velocities;
+
+		std::cout << "velocity = (" << velocity[0] << ", " << velocity[1] << ", " << velocity[2] << ")" << std::endl;
+		std::cout << "(v_calc, w_calc) = (" << direction * sqrt(dx[0]*dx[0] + dx[1]*dx[1]) << ", " << dx[2] << ")" << std::endl;
+
 	}
 	else {
 		M_dx(0, 0) = 0;
@@ -231,29 +238,29 @@ void HNN::estimate() {
 	Ki_est[0] = 1.0 / theta_est(0, 0);
 	Ki_est[1] = 1.0 / theta_est(1, 0);
 
-	cout << "Ki_est = [" << Ki_est[0] << ", " << Ki_est[1] << "]" << endl;
-
 	// output
 	double estErr = sqrt((Ki_est[0] - Ki[0]) * (Ki_est[0] - Ki[0]) +
-				(Ki_est[1] - Ki[1]) * (Ki_est[1] - Ki[1]));
+			     (Ki_est[1] - Ki[1]) * (Ki_est[1] - Ki[1]));
 
 	this->estErr = estErr;
 
+
+	cout << "Ki_est = [" << Ki_est[0] << ", " << Ki_est[1] << "]" << endl;
+	
 	pit_1 = pit;
 	dpitdt_1 = dpitdt;
 
-
 	//
-	pose_1[0] = pose[0];
+    	pose_1[0] = pose[0];
 	pose_1[1] = pose[1];
 	pose_1[2] = pose[2];
 
+	xt_1[0] = xt[0];
+	xt_1[1] = xt[1];
+	
 	velocity_1[0] = velocity[0];
 	velocity_1[1] = velocity[1];
 	velocity_1[2] = velocity[2];
-
-	xt_1[0] = xt[0];
-	xt_1[1] = xt[1];
 
 	//	
 	firstLoop = false;

@@ -75,7 +75,7 @@ add_message_files(
  generate_messages(
    DEPENDENCIES
    std_msgs
-   sensor_msgs
+   nav_msgs
  )
 
 ################################################
@@ -110,7 +110,7 @@ add_message_files(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES hnn
-   CATKIN_DEPENDS roscpp rospy std_msgs tf
+   CATKIN_DEPENDS roscpp rospy std_msgs tf nav_msgs
 #  DEPENDS system_lib
 )
 

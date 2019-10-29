@@ -44,10 +44,12 @@ protected:
 
 	double pose[3];
 	double pose_1[3];
+	double pose_2[3];
 	double velocity[3];
 	double velocity_1[3];
 	double xt[2];
 	double xt_1[2];
+	double xt_2[2];
 	
 	//
 	double Ki[2];

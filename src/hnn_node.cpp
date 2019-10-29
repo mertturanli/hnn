@@ -140,7 +140,7 @@ int main(int argc, char* argv[]) {
 	double vector[2] = {v[0], v[1]};
 	hnn->setRealVector(vector);
 
-	ros::Rate r(100);
+	
 	
 
 	std::ostringstream conv;
@@ -151,7 +151,7 @@ int main(int argc, char* argv[]) {
 	conv.clear();
 	conv.str("");
 	conv << agentId + 1;
-	str1 = strRobot + conv.str() + "/ground_truth/state";
+	str1 = strRobot + conv.str() + "/pose";
 	ros::Subscriber subscriberGroundTruth = n.subscribe(str1, 1000, groundTruthCallback);
 
 	// xt
@@ -176,11 +176,7 @@ int main(int argc, char* argv[]) {
 	double dt = 0;
 
 	// time
-	long startMs, endMs;
-	struct timespec tStart;
-	struct timespec tEnd;
-    
-
+	ros::Rate r(100.0);
 
 
 	// loop
@@ -193,12 +189,7 @@ int main(int argc, char* argv[]) {
 
 		mainMutex.lock();
 
-
-		if (dt >= 0.1) {
-		
-			clock_gettime(CLOCK_REALTIME, &tStart);
-			startMs = tStart.tv_nsec / 1.0e6;
-			
+		if (poseReceived == 1 && xtReceived == 1) {
 			// ground truth
 			poseBuffer[0] = pose[0];
 			poseBuffer[1] = pose[1];
@@ -210,10 +201,17 @@ int main(int argc, char* argv[]) {
 
 			xtBuffer[0] = xt[0];
 			xtBuffer[1] = xt[1];
+		}
 
+
+		if (dt >= 0.1) {
+
+			cout << "dt = " << dt << endl;
+	
 			
 			// main algorithm
 			if (poseReceived == 1 && xtReceived == 1) {
+				
 				ROS_INFO("Position (%d) = (%f, %f, %f)\n", agentId, poseBuffer[0], poseBuffer[1], poseBuffer[2]);
 				ROS_INFO("Velocity (%d) = (%f, %f, %f)\n", agentId, velocityBuffer[0], velocityBuffer[1], velocityBuffer[2]);
 
