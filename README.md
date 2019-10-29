@@ -43,5 +43,7 @@ The parameter estimation errors can be plotted using the following command (open
     $ rqt_plot /robot1/estErr /robot2/estErr /robot3/estErr 
 ```
 
+4. The topic /robotX/estVector gives the estimated parameter vectors.
+
 ## Dependencies
 *  [Eigen3](http://eigen.tuxfamily.org/)
