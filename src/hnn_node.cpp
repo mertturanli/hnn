@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 #include "ros/ros.h"
 #include "hnn/AgentPosition.h"
+#include "hnn/EstimationVector.h"
 
 #include "hnn.h"
 
@@ -165,6 +166,11 @@ int main(int argc, char* argv[]) {
 	str1 = strRobot + conv.str() + "/estErr";
 	ros::Publisher estErrPub = n.advertise<std_msgs::Float64>(str1, 10);
 
+	// est. vec.
+	str1 = strRobot + conv.str() + "/estVector";
+	ros::Publisher estVecPub = n.advertise<hnn::EstimationVector>(str1, 10);
+
+
 	//
 
 	double poseBuffer[3];
@@ -225,6 +231,17 @@ int main(int argc, char* argv[]) {
 				estErr.data = hnn->getEstimationError();
 
 				estErrPub.publish(estErr);
+
+				// publish est. vector
+				hnn::EstimationVector estVec;
+				double Ki_est[2];
+
+				hnn->getEstimationVector(Ki_est);
+
+				estVec.data[0] = Ki_est[0];
+				estVec.data[1] = Ki_est[1];
+
+				estVecPub.publish(estVec);
 
 			}
 

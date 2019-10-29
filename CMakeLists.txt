@@ -53,6 +53,7 @@ find_package(Eigen3 REQUIRED)
 add_message_files(
    FILES
    AgentPosition.msg
+   EstimationVector.msg
 	
 #   Message2.msg
 )
