@@ -35,7 +35,7 @@
 ## Notes
 1. The rosbag node starts paused; you can unpause it by hitting space button.
 
-2. The parameter vectors of the robots to be estimated are [0.9, 0.9], [1.0, 1.0] and [1.0, 1.0], respectively. These are written in the launch file. These coefficients are used while creating the trajectory of the robots in the rosbag file.
+2. The parameter vectors of the robots to be estimated are [0.9, 0.9], [1.0, 1.0] and [1.0, 1.0], respectively. These are written in the launch file. These coefficients are used while creating the trajectory of the robots in the rosbag file. The trajectories are recorded from a ROS/Gazebo simulation with three robots.
 
 3. The topic /robotX/estErr gives the estimation error (X is the robot number). In the launch file, the convergence of the estimator can be adjusted by using hfAlpha and hfBeta parameters.
 The parameter estimation errors can be plotted using the following command (opens automatically when launch file is executed):
